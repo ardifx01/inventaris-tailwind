@@ -1,9 +1,13 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Ruangan') }}
-        </h2>
-    </x-slot>
+    {{-- <x-slot name="header">
+       <div class="text-lg font-semibold text-gray-700 dark:text-gray-100">
+            Selamat Datang, {{ Auth::user()-> name }}
+       </div>
+
+       <div class="text-sm text-gray-600 dark:text-gray-400">
+        {{ \Carbon\Carbon::now()->translatedFormat ('l, d F Y') }}
+       </div>
+    </x-slot> --}}
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

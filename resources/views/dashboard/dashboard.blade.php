@@ -1,8 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+   {{-- <header class="flex justify-between items-center px-2">
+        <div class="text-md font-semibold text-gray-700 dark:text-gray-200">
+            Selamat Datang, "{{ Auth::user()-> name }}"
+        </div>
+        <div class="text-sm text-gray-600 dark:text-gray-400">
+            {{ \Carbon\Carbon::now()-> translatedFormat('l, d F Y') }}
+        </div>
+   </header> --}}
     </x-slot>
 
     <div class="py-12">
