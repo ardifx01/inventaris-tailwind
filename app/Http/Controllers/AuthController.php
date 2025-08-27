@@ -14,11 +14,11 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    // Proses Login & Autentikasi
+    // login & autentinkasi
 
     public function login (Request $request)
     {
-        // Validator
+        // validasi input
             $credentials = $request->validate([
                 'email' => 'required|email',
                 'password' => 'required',
@@ -31,7 +31,7 @@ class AuthController extends Controller
             return redirect()->intended('/dashboard'); // jika berhasil, bawa ke dashboard
         }
 
-        // If false
+        // Kalau salah
 
         return back()->withErrors([
             'email' => 'Email atau Password Salah', 
