@@ -6,6 +6,7 @@ use App\Http\Controllers\Ruangan;
 use App\Http\Controllers\Aset;
 use App\Http\Controllers\Pengaturan;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Riwayat;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -27,6 +28,7 @@ Route::get('/ruangan', [Ruangan::class, 'index'])->name('ruangan');
 Route::get('/ruangan/create', [Ruangan::class, 'create'])->name('ruangan.create');
 Route::get('/aset', [Aset::class, 'index'])->name('aset');
 Route::get('/aset/create', [Aset::class, 'create'])->name('aset.create');
+Route::get('/riwayat', [Riwayat::class, 'index'])->name('riwayat');
 Route::get ('/pengaturan', [Pengaturan::class, 'index'])->name('pengaturan');
 
 

@@ -2,7 +2,7 @@
 const toggle = document.getElementById('darkModeToggle');
 
 // Set default theme saat load
-if (localStorage.getItem('theme') === 'dark') {
+if (localStorage.getItem('theme') === 'light') {
     document.documentElement.classList.add('dark');
     toggle.checked = true;
 }
