@@ -41,7 +41,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 
+// Rute Dashboard
 
+Route::get('/dashboard/chart', [Dashboard::class, 'chart'])->name('dashboard.chart');
 
 
 

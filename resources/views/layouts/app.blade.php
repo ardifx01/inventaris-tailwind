@@ -55,7 +55,7 @@
                  class="flex items-center justify-start mb-3 transition-all duration-300">
                 <img src="{{ asset('assets/icons/logo.svg') }}"
                      alt="Logo"
-                     class="w-6 h-6 flex-shrink-0">
+                     class="w-6 h-6 flex-shrink-0 dark:filter dark:brightness-0 dark:invert">
                 <span class="menu-text ml-3 text-md font-bold text-gray-800 dark:text-gray-200">
                     Inventory
                 </span>
@@ -160,7 +160,7 @@ const toggleButton = document.getElementById("sidebar-toggle");
 const collapseIcon = document.getElementById("collapse-icon");
 
 let isCollapsed = false;
-const BREAKPOINT = 1900;
+const breakpoint = 1900;
 
 // Fungsi toggle manual
 function toggleSidebar() {
@@ -170,10 +170,10 @@ function toggleSidebar() {
 
     isCollapsed = !isCollapsed;
 
-    // Atur rotasi ikon panah
+   
     collapseIcon.style.transform = isCollapsed ? "rotate(0deg)" : "rotate(180deg)";
 
-    // Simpan state ke localStorage
+   
     localStorage.setItem("sidebar-collapsed", isCollapsed);
 }
 
@@ -181,9 +181,9 @@ function toggleSidebar() {
 function handleResize() {
     const screenWidth = window.innerWidth;
 
-    if (screenWidth <= BREAKPOINT && !isCollapsed) {
+    if (screenWidth <= breakpoint && !isCollapsed) {
         toggleSidebar();
-    } else if (screenWidth > BREAKPOINT && isCollapsed) {
+    } else if (screenWidth > breakpoint && isCollapsed) {
         toggleSidebar();
     }
 }
@@ -207,5 +207,6 @@ window.addEventListener("resize", handleResize);
 
 </script>
 
+@yield('scripts')
 </body>
 </html>

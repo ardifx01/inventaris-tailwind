@@ -10,4 +10,31 @@ class Dashboard extends Controller
     {
         return view('dashboard.dashboard');
     }
+
+    public function chart(){
+       return response()->json([
+        'boxes' => [
+            'admin' => 3,
+            'ruangan' => 5,
+            'asetIndexed' => 31,
+
+        ],
+
+        'chartBar' => [
+            'labels' => ['Furnitur', 'Elektronik', 'Dekorasi'],
+            'labelData' => [10, 15, 6],
+        ],
+
+        'chartPie' => [
+            'labels' => ['Baik', 'Rusak Ringan', 'Rusak Berat'],
+            'labelData' => [ 28, 2, 1],
+        ],
+
+    ]);
+  }
+    
 }
+
+
+
+
