@@ -1,47 +1,90 @@
 <x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+    {{-- Alert Error --}}
+    @if ($errors->any())
+    <div id="alert-error"
+    class="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-md bg-red-50 border-s-4 border-red-500 p-4 rounded-lg shadow-lg dark:bg-red-800/30
+           transition duration-700 ease-in-out"
+    role="alert">
+        <div class="flex">
+            <div class="shrink-0">
+                <span
+                    class="inline-flex justify-center items-center size-10 rounded-full border-4 border-red-100 bg-red-200 text-red-800 dark:border-red-900 dark:bg-red-800 dark:text-red-400">
+                    <svg class="shrink-0 size-6" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor">
+                        <path d="M18 6 6 18"></path>
+                        <path d="m6 6 12 12"></path>
+                    </svg>
+                </span>
+            </div>
+            <div class="ms-3">
+                <h3 class="text-gray-800 font-semibold dark:text-white">
+                    Error!
+                </h3>
+                <ul class="text-sm text-gray-700 dark:text-neutral-400 list-disc ps-5">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    </div>
+    @endif
 
-    <form method="POST" action="{{ route('login') }}">
+    {{-- Form Login --}}
+    <form method="POST" action="{{ route('login') }}" class="max-w-sm mx-auto mt-10 space-y-8">
         @csrf
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        {{-- Email --}}
+        <div class="max-w-sm space-y-5">
+            <div class="relative mb-5">
+              <input type="email" name="email" id="email" value="{{ old('email') }}" class="peer py-2.5 sm:py-3 pe-0 ps-8 block w-full bg-transparent border-t-transparent border-b-2 border-x-transparent border-b-gray-200 sm:text-sm focus:border-t-transparent focus:border-x-transparent focus:border-b-blue-500 focus:ring-0 disabled:opacity-50 disabled:pointer-events-none dark:border-b-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600 dark:focus:border-b-neutral-600" placeholder="Email" required autofocus>
+              <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-2 peer-disabled:opacity-50 peer-disabled:pointer-events-none">
+                <svg class="shrink-0 size-4 text-gray-500 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+            </div>
+          
+            <div class="relative mb-5">
+              <input type="password"  name="password" id="password" class="peer py-2.5 sm:py-3 pe-0 ps-8 block w-full bg-transparent border-t-transparent border-b-2 border-x-transparent border-b-gray-200 sm:text-sm focus:border-t-transparent focus:border-x-transparent focus:border-b-blue-500 focus:ring-0 disabled:opacity-50 disabled:pointer-events-none dark:border-b-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600 dark:focus:border-b-neutral-600" placeholder="Password" required autofocus>
+              <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-2 peer-disabled:opacity-50 peer-disabled:pointer-events-none">
+                <svg class="shrink-0 size-4 text-gray-500 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 18v3c0 .6.4 1 1 1h4v-3h3v-3h2l1.4-1.4a6.5 6.5 0 1 0-4-4Z"></path>
+                  <circle cx="16.5" cy="7.5" r=".5"></circle>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+        {{-- Remember Me --}}
+        <div class="flex items-center">
+            <input id="remember_me" type="checkbox" name="remember"
+                class="rounded border-gray-300 text-blue-600 shadow-sm focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700">
+            <label for="remember_me" class="ms-2 text-sm text-gray-600 dark:text-gray-400">Remember me</label>
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
+        {{-- Forgot password + Login button --}}
+        <div class="flex items-center justify-center">
+            <button type="submit"
+                class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 text-sm">
+                Log in
+            </button>
         </div>
     </form>
+
+    {{-- Auto-hide error --}}
+    <script>
+        setTimeout(() => {
+            const alertError = document.getElementById('alert-error');
+            if (alertError) {
+                // Tambahkan kelas untuk animasi fade + geser ke atas
+                alertError.classList.add('opacity-0', '-translate-y-5');
+    
+                // Setelah animasi selesai, baru sembunyikan elemen
+                setTimeout(() => {
+                    alertError.style.display = 'none';
+                }, 700); // sama dengan duration-700
+            }
+        }, 5000);
+    </script>
 </x-guest-layout>
