@@ -55,7 +55,7 @@
                  class="flex items-center justify-start mb-3 transition-all duration-300">
                 <img src="{{ asset('assets/icons/logo.svg') }}"
                      alt="Logo"
-                     class="w-6 h-6 flex-shrink-0 dark:filter dark:brightness-0 dark:invert">
+                     class="w-8 h-8 flex-shrink-0 dark:filter dark:brightness-0 dark:invert">
                 <span class="menu-text ml-3 text-md font-bold text-gray-800 dark:text-gray-200">
                     Inventory
                 </span>
