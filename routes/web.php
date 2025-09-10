@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Dashboard;
-use App\Http\Controllers\Ruangan;
-use App\Http\Controllers\Aset;
+use App\Http\Controllers\RuanganController;
+use App\Http\Controllers\AsetController;
 use App\Http\Controllers\Pengaturan;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Riwayat;
@@ -23,11 +23,9 @@ Route::middleware('auth')->group(function () {
 
 // Rute Halaman Utama
 
-Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
-Route::get('/ruangan', [Ruangan::class, 'index'])->name('ruangan');
-Route::get('/ruangan/create', [Ruangan::class, 'create'])->name('ruangan.create');
-Route::get('/aset', [Aset::class, 'index'])->name('aset');
-Route::get('/aset/create', [Aset::class, 'create'])->name('aset.create');
+
+
+
 Route::get('/riwayat', [Riwayat::class, 'index'])->name('riwayat');
 Route::get ('/pengaturan', [Pengaturan::class, 'index'])->name('pengaturan');
 
@@ -42,10 +40,21 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 // Rute Dashboard
-
+Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
 Route::get('/dashboard/chart', [Dashboard::class, 'chart'])->name('dashboard.chart');
 
+// Ruangan
 
+
+Route::get('/ruangan', [RuanganController::class, 'index'])->name('ruangan');
+Route::get('/ruangan/create', [RuanganController::class, 'create'])->name('ruangan.create');
+Route::post('/ruangan', [RuanganController::class, 'store'])->name('ruangan.store');
+
+// Aset
+
+Route::get('/aset', [AsetController::class, 'index'])->name('aset');
+Route::get('/aset/create', [AsetController::class, 'create'])->name('aset.create');
+Route::post('/aset', [AsetController::class, 'store'])->name('aset.store');
 
 
 require __DIR__.'/auth.php';
