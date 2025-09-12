@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -14,11 +15,11 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans text-gray-900 antialiased">
+    <body class="font-sans text-gray-900 antialiased transition-colors duration-500">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-            <img src="{{ asset('assets/icons/logo.svg') }}"
+            <img src="{{ asset('assets/icons/logo.svg') }}" id="themeLogo"
             alt="Logo"
-            class="w-24 h-24 max-w-full flex-shrink-0 dark:filter dark:brightness-0 dark:invert mb-3">
+            class="cursor-pointer w-24 h-24 max-w-full flex-shrink-0 dark:filter dark:brightness-0 dark:invert mb-3">
             <div class="flex items-center justify-start mb-3 transition-all duration-300">
            
            <div class="menu-text ml-3 text-md text-3xl font-bold text-gray-800 dark:text-gray-200">
